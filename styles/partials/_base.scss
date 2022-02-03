@@ -1,0 +1,99 @@
+@use './abstracts' as *;
+// All fonts used
+@font-face {
+  font-family: 'AvenirNextLTPro';
+  src: url('../../assets/fonts/AvenirNextLTPro-Regular.otf') format('opentype'),
+    url('../../assets/fonts/Alternative\ files/AvenirNextLTPro.ttf')
+      format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'AvenirNextLTPro';
+  src: url('../../assets/fonts/AvenirNextLTPro-Bold.otf') format('opentype'),
+    url('../../assets/fonts/Alternative\ files/AvenirNextLTProBold.ttf')
+      format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'AvenirNextLTPro';
+  src: url('../../assets/fonts/AvenirNextLTPro-Demi.otf') format('opentype'),
+    url('../../assets/fonts/Alternative\ files/AvenirNextLTProDemi.ttf')
+      format('truetype');
+  font-weight: 600;
+}
+
+//Basic css resets
+body {
+  box-sizing: border-box;
+  font-family: 'AvenirNextLTPro';
+  color: $color-primary-black;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+//Typography
+.heading-primary {
+  font-size: 1.5rem;
+  line-height: 32px;
+  font-weight: 700;
+
+  @include tablet {
+    font-size: 3.75rem;
+    line-height: 4.25rem;
+  }
+}
+
+.heading-secondary {
+  @include heading-padding;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+
+  @include tablet {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+}
+.heading-tertiary {
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+
+  @include tablet {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.paragraph {
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  @include tablet {
+    line-height: 1.375rem;
+  }
+}
+
+.footer-text {
+  @extend .paragraph;
+  @include tablet {
+    line-height: 1.25rem;
+  }
+}
+
+.label-text {
+  font-size: 0.625rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  @include tablet {
+    font-size: 0.75rem;
+  }
+}

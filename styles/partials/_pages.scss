@@ -1,0 +1,110 @@
+@use './abstracts' as *;
+
+//Section Paddding!
+.about,
+.gallery {
+  padding: 0 1rem 2rem 1rem;
+  @include tablet {
+    padding: 0 2.25rem 2.5rem 2.25rem;
+  }
+}
+
+//About the musicians section
+.about {
+  background: $color-primary-white;
+  @include justify-center;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    @include tablet {
+      padding: 0 3rem;
+    }
+  }
+
+  &__img-box {
+    aspect-ratio: 16 / 9;
+    min-height: 20vw;
+
+    @include tablet {
+      margin-bottom: 1rem;
+    }
+  }
+  &__img {
+    @include image-fit;
+  }
+
+  &__figure {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    @include tablet {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__quoteblock {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    @include tablet {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__cite {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  &__textbox {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include tablet {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+}
+
+//Gallery Section
+.gallery {
+  background-color: $color-secondary-alabaster;
+  @include justify-center;
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 0;
+
+    @include tablet {
+      padding: 0 3rem;
+    }
+  }
+
+  &__box {
+    position: relative;
+    flex-basis: calc(100% / 1);
+    aspect-ratio: 16 / 9;
+    filter: grayscale(55%);
+    transition: all 0.2s;
+
+    &:hover {
+      filter: grayscale(0);
+    }
+
+    @include tablet {
+      flex-basis: calc(100% / 3 - 1.5rem);
+    }
+  }
+
+  &__img {
+    @include image-fit;
+  }
+}
