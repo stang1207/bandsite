@@ -1,5 +1,5 @@
 @use './abstracts' as *;
-
+@use './base' as *;
 //Centered Container and width
 .container {
   width: 100%;
@@ -117,13 +117,13 @@
   background-color: $color-primary-black;
   color: $color-secondary-mercury;
   padding: 0 1rem 2rem 1rem;
+  @extend .footer-text;
   @include justify-center;
   @include tablet {
     padding: 0 2.25rem 2rem 2.25rem;
   }
 
   &__container {
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -132,13 +132,14 @@
     }
   }
 
-  &__contact-us {
+  &__social-media {
     display: flex;
     flex-direction: column;
 
     @include tablet {
       flex-direction: row;
       align-items: baseline;
+
       gap: 2rem;
     }
   }
@@ -148,24 +149,23 @@
     color: $color-primary-white;
   }
 
-  &__social {
-    &-list {
-      display: flex;
-      gap: 1.5rem;
+  &__social-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
 
-      @include tablet {
-        gap: 2rem;
-      }
+    @include tablet {
+      gap: 2rem;
     }
+  }
 
-    &-box {
-      display: inline-block;
-      height: 1.5rem;
-    }
+  &__social-link {
+    display: inline-block;
+    height: 1.5rem;
+  }
 
-    &-icon {
-      @include image-fit;
-    }
+  &__social-icon {
+    @include image-fit;
   }
 
   //Contact list - name, address, email
@@ -176,14 +176,19 @@
     gap: 0.5rem;
     @include tablet {
       flex-direction: row;
+      gap: 2rem;
     }
   }
 
-  &__contact {
+  &__contact-person {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    margin-bottom: 1.5rem;
+    font-style: normal;
+
+    &:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
 
     @include tablet {
       gap: 1rem;
@@ -211,20 +216,15 @@
     gap: 1rem;
   }
 
-  &__copywrite {
-    color: $color-primary-white;
-  }
-
   //Logo
   &__logo-box {
-    position: static;
     height: 1.25rem;
     width: 7.5rem;
 
     @include tablet {
-      position: absolute;
-      top: 3.7rem;
-      right: 2rem;
+      order: -1;
+      align-self: flex-end;
+      transform: translateY(4.85rem);
     }
   }
   &__logo {

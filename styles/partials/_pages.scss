@@ -1,5 +1,5 @@
 @use './abstracts' as *;
-
+@use './base' as *;
 //Section Paddding!
 .about,
 .gallery {
@@ -15,6 +15,7 @@
   @include justify-center;
 
   &__content {
+    @extend .paragraph;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -26,40 +27,44 @@
   &__img-box {
     aspect-ratio: 16 / 9;
     min-height: 20vw;
-
     @include tablet {
       margin-bottom: 1rem;
     }
   }
+
   &__img {
+    border-radius: 0.2rem;
     @include image-fit;
   }
 
-  &__figure {
+  &__blockquote {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
     margin-bottom: 1rem;
-    @include tablet {
-      margin-bottom: 1.5rem;
-    }
-  }
 
-  &__quoteblock {
     font-weight: 600;
     font-size: 1rem;
     line-height: 1.5;
+
     @include tablet {
       font-size: 1.4rem;
     }
   }
 
-  &__cite {
+  &__citation {
     font-weight: 600;
     font-size: 1rem;
   }
 
+  &__article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   &__textbox {
+    margin-top: 0.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -77,22 +82,17 @@
   background-color: $color-secondary-alabaster;
   @include justify-center;
 
-  &__container {
+  &__inner-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    padding: 0;
-
-    @include tablet {
-      padding: 0 3rem;
-    }
   }
 
-  &__box {
+  &__item {
     position: relative;
     flex-basis: calc(100% / 1);
     aspect-ratio: 16 / 9;
-    filter: grayscale(55%);
+    filter: grayscale(65%);
     transition: all 0.2s;
 
     &:hover {
@@ -100,11 +100,17 @@
     }
 
     @include tablet {
+      aspect-ratio: 16 / 9;
       flex-basis: calc(100% / 3 - 1.5rem);
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+      }
     }
   }
 
   &__img {
+    border-radius: 0.2rem;
     @include image-fit;
   }
 }
