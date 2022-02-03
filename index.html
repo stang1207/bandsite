@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/bio.css" />
+    <link rel="stylesheet" href="styles/bio.css" />
+    <script defer src="./scripts/index.js"></script>
     <title>BandSite</title>
   </head>
   <body>
@@ -38,7 +39,8 @@
     </header>
     <main class="main">
       <section class="about">
-        <div class="about__container container">
+        <!-- section class is only for fade in animation with javascript -->
+        <div class="about__container container section">
           <h2 class="heading-secondary">About the Musicians</h2>
           <article class="about__content">
             <!-- This subheading is only for screen reader -->
@@ -48,7 +50,7 @@
             <figure class="about__img-box">
               <img
                 class="about__img"
-                src="./assets/images/band.jpg"
+                src="assets/images/band.jpg"
                 alt="band image"
               />
             </figure>
@@ -96,7 +98,8 @@
         </div>
       </section>
       <section class="gallery">
-        <div class="gallery__container container">
+        <!-- section class is only for fade in animation with javascript -->
+        <div class="gallery__container container section">
           <h2 class="heading-secondary">Photo Gallery</h2>
           <div class="gallery__inner-grid">
             <figure class="gallery__item">
@@ -167,7 +170,8 @@
       </section>
     </main>
     <footer class="footer">
-      <div class="footer__container container">
+      <!-- section class is only for fade in animation with javascript -->
+      <div class="footer__container container section">
         <section class="footer__social-media">
           <h2 class="footer__heading heading-secondary">Get in Touch</h2>
           <ul class="footer__social-list">
@@ -218,11 +222,11 @@
             aria-label="A list of contacts for the band"
             class="visually-hidden"
           >
-            Band Contact List
+            Band Contacts
           </h3>
           <address class="footer__contact-person">
             <p class="footer__name">Cam Adams<br />The bees Knees Management</p>
-            <p class="footer__address">
+            <p class="footer__location">
               503 Broadway Penthouse,<br />New York, NY 10012, USA
             </p>
             <a class="footer__email" href="mailto:info@thebeesknees.com"
@@ -231,7 +235,7 @@
           </address>
           <address class="footer__contact-person">
             <p class="footer__name">Pearl Gregg<br />Limitless Artist Group</p>
-            <p class="footer__address">
+            <p class="footer__location">
               Booking Agent for<br />US / South America / Japan
             </p>
             <a class="footer__email" href="mailto:pearl.gregg@limitlessag.com"
@@ -240,7 +244,7 @@
           </address>
           <address class="footer__contact-person">
             <p class="footer__name">Carson Whyte<br />ARCH Entertainment</p>
-            <p class="footer__address">Booking Agent for<br />UK / EU / AU</p>
+            <p class="footer__location">Booking Agent for<br />UK / EU / AU</p>
             <a
               class="footer__email"
               href="mailto:pearl.gregg@cwhyte@archentertainment.com"

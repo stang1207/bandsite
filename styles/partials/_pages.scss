@@ -9,6 +9,15 @@
   }
 }
 
+//Section Fade In Animation With JS.
+.section {
+  transition: transform 1s, opacity 1s;
+}
+.section--hidden {
+  opacity: 0;
+  transform: translateY(8rem);
+}
+
 //About the musicians section
 .about {
   background: $color-primary-white;
@@ -27,14 +36,17 @@
   &__img-box {
     aspect-ratio: 16 / 9;
     min-height: 20vw;
+    box-shadow: 5px 8px 10px 0px rgba(0, 0, 0, 0.3);
+
     @include tablet {
       margin-bottom: 1rem;
     }
   }
 
   &__img {
-    border-radius: 0.2rem;
     @include image-fit;
+
+    border-radius: 0.5rem;
   }
 
   &__blockquote {
@@ -104,7 +116,12 @@
       flex-basis: calc(100% / 3 - 1.5rem);
       &:hover {
         transform: scale(1.05);
-        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+
+      &:active {
+        transform: scale(1);
+        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.6);
       }
     }
   }
