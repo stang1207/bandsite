@@ -8,3 +8,7 @@
 
 # node module
 node_modules/
+
+# Package lock json
+*.lock.json
+*.vscode

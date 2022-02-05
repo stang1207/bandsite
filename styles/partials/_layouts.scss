@@ -1,40 +1,37 @@
 @use './abstracts' as *;
 @use './base' as *;
-//Centered Container and width
+//Header (Navbar, Hero-Banner) and Footer Styles live in this file
+
+//Centered Wrapper
 .container {
   width: 100%;
-  // max width of the container is 1020px
   max-width: 63.75rem;
 }
 
 //Header (including Navbar and Hero Banner)
 .nav {
-  @include justify-center;
   background: $color-primary-black;
   padding: 1.5rem 0 0 0;
-
+  @include justify-center;
   @include tablet {
     padding: 0 2.5rem;
   }
 
-  //Nav container that stores everything inside navbar
   &__container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
     animation-name: fadeIntoRight;
     animation-duration: 1.3s;
     animation-timing-function: ease-out;
-
+    gap: 0.5rem;
+    @extend .container;
+    @include flex-column;
     @include tablet {
       flex-direction: row;
       align-items: center;
-      gap: 2rem;
+      gap: 3rem;
     }
   }
 
-  //Nav Logo
+  //Logo
   &__logo-box {
     align-self: center;
     min-width: 7.5rem;
@@ -45,8 +42,9 @@
     @include image-fit;
   }
 
-  //Nav menu and links
+  //List and links
   &__list {
+    white-space: nowrap;
     display: flex;
     list-style: none;
     @include tablet {
@@ -60,21 +58,21 @@
   }
 
   &__link {
-    position: relative;
     width: 100%;
+    position: relative;
     text-decoration: none;
     color: $color-secondary-mercury;
     display: inline-block;
     padding: 1rem 0.5rem;
-    &:hover {
-      color: $color-primary-white;
-    }
-
     @include tablet {
       padding: 2rem 1rem;
     }
 
-    //Border related props
+    &:hover {
+      color: $color-primary-white;
+    }
+
+    //Hover border and animation
     &::before {
       content: '';
       position: absolute;
@@ -84,9 +82,10 @@
       left: 0;
       border-bottom: 3px solid $color-primary-white;
       transform: scaleX(0);
-      transition: transform 0.15s;
+      transition: transform 0.2s;
       transform-origin: 0% 50%;
     }
+
     &:hover::before {
       transform: scaleX(1);
     }
@@ -122,13 +121,13 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   @include tablet {
     padding: 0 2.5rem;
   }
 
   &__container {
+    @extend .container;
     display: flex;
     align-items: center;
     min-height: 55vw;
@@ -136,7 +135,6 @@
     animation-name: fadeIntoRight;
     animation-duration: 1.6s;
     animation-timing-function: ease-out;
-
     @include tablet {
       min-height: 42vw;
     }
@@ -151,26 +149,24 @@
   @extend .footer-text;
   @include justify-center;
   @include tablet {
-    padding: 0 2.25rem 2rem 2.25rem;
+    padding: 0 2.5rem 2rem 2.5rem;
   }
 
   &__container {
-    display: flex;
-    flex-direction: column;
     gap: 1.5rem;
+    @extend .container;
+    @include flex-column;
     @include tablet {
       gap: 0;
     }
   }
 
+  //Social media section
   &__social-media {
-    display: flex;
-    flex-direction: column;
-
+    @include flex-column;
     @include tablet {
       flex-direction: row;
       align-items: baseline;
-
       gap: 2rem;
     }
   }
@@ -184,7 +180,6 @@
     list-style: none;
     display: flex;
     gap: 1.5rem;
-
     @include tablet {
       gap: 2rem;
     }
@@ -199,7 +194,7 @@
     @include image-fit;
   }
 
-  //Contact list - name, address, email
+  //Contact list
   &__contacts {
     display: flex;
     flex-direction: column;
@@ -216,7 +211,6 @@
     flex-direction: column;
     gap: 0.6rem;
     font-style: normal;
-
     &:not(:last-child) {
       margin-bottom: 1.5rem;
     }
@@ -224,7 +218,6 @@
     @include tablet {
       gap: 1rem;
       margin-bottom: 2rem;
-
       &:not(:last-child) {
         margin-right: 3rem;
       }
@@ -251,13 +244,13 @@
   &__logo-box {
     height: 1.25rem;
     width: 7.5rem;
-
     @include tablet {
       order: -1;
       align-self: flex-end;
       transform: translateY(4.85rem);
     }
   }
+
   &__logo {
     @include image-fit;
   }

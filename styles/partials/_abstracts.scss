@@ -15,6 +15,7 @@ $breakpoints: (
   'desktop': 80em
 );
 
+//Breakpoint mixins
 @mixin mobile {
   @media (max-width: map-get($breakpoints, 'tablet')) {
     @content;
@@ -33,9 +34,9 @@ $breakpoints: (
   }
 }
 
+//utility mixins and classes
 @mixin heading-padding {
   padding: 1.5rem 0 0.9375rem 0;
-
   @media (min-width: map-get($breakpoints, 'tablet')) {
     padding: 3rem 0 2.25rem 0;
   }
@@ -52,7 +53,11 @@ $breakpoints: (
   justify-content: center;
 }
 
-//utility classes
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

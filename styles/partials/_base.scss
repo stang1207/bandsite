@@ -1,5 +1,5 @@
 @use './abstracts' as *;
-// All fonts used
+// Fonts import
 @font-face {
   font-family: 'AvenirNextLTPro';
   src: url('../../assets/fonts/AvenirNextLTPro-Regular.otf') format('opentype'),
@@ -30,6 +30,7 @@ body {
   font-family: 'AvenirNextLTPro';
   color: $color-primary-black;
   background: $color-primary-black;
+  overflow-x: hidden;
 }
 
 *,

@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/bio.css" />
     <script defer src="./scripts/index.js"></script>
+    <link rel="stylesheet" href="styles/bio.css" />
     <title>BandSite</title>
   </head>
   <body>
     <header class="header">
       <nav class="nav">
-        <div class="nav__container container">
+        <div class="nav__container">
           <a href="./index.html" class="nav__logo-box">
             <img
               src="./assets/logo/Logo-bandsite.svg"
@@ -32,28 +32,28 @@
         </div>
       </nav>
       <section class="banner">
-        <div class="banner__container container">
+        <div class="banner__container">
           <h1 class="heading-primary">The Bees Knees</h1>
         </div>
       </section>
     </header>
     <main class="main">
       <section class="about">
-        <!-- section class is only for fade in animation with javascript -->
-        <div class="about__container container section">
+        <!-- section class is only for fade in animation with javascript, experimental feature -->
+        <div class="about__container section--fade-in">
           <h2 class="heading-secondary">About the Musicians</h2>
           <article class="about__content">
             <!-- This subheading is only for screen reader -->
             <h3 aria-label="Article on the band" class="visually-hidden">
               Article related to the band
             </h3>
-            <figure class="about__img-box">
+            <div class="about__img-box">
               <img
                 class="about__img"
                 src="assets/images/band.jpg"
                 alt="band image"
               />
-            </figure>
+            </div>
             <figure class="about__blockquote">
               <blockquote class="about__quote-container">
                 <p class="about__quote">
@@ -98,80 +98,80 @@
         </div>
       </section>
       <section class="gallery">
-        <!-- section class is only for fade in animation with javascript -->
-        <div class="gallery__container container section">
+        <!-- section class is only for fade in animation with javascript, experimental feature -->
+        <div class="gallery__container section--fade-in">
           <h2 class="heading-secondary">Photo Gallery</h2>
           <div class="gallery__inner-grid">
-            <figure class="gallery__item">
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-1.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--1"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-2.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--2"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-3.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--3"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-4.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--4"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-5.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--5"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-6.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--6"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-7.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--7"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-8.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--8"
                 class="gallery__img"
               />
-            </figure>
-            <figure class="gallery__item">
+            </div>
+            <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-9.jpg"
-                alt="gallery photos"
+                alt="gallery__photo--9"
                 class="gallery__img"
               />
-            </figure>
+            </div>
           </div>
         </div>
       </section>
     </main>
     <footer class="footer">
-      <!-- section class is only for fade in animation with javascript -->
-      <div class="footer__container container section">
+      <!-- section class is only for fade in animation with javascript, experimental feature -->
+      <div class="footer__container section--fade-in">
         <section class="footer__social-media">
           <h2 class="footer__heading heading-secondary">Get in Touch</h2>
           <ul class="footer__social-list">
