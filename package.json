@@ -1,0 +1,42 @@
+{
+  "devDependencies": {
+    "sass": "^1.49.4"
+  },
+  "name": "bandsite",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "braces": "^3.0.2",
+    "anymatch": "^3.1.2",
+    "binary-extensions": "^2.2.0",
+    "chokidar": "^3.5.3",
+    "fill-range": "^7.0.1",
+    "fsevents": "^2.3.2",
+    "glob-parent": "^5.1.2",
+    "immutable": "^4.0.0",
+    "is-extglob": "^2.1.1",
+    "is-binary-path": "^2.1.0",
+    "is-glob": "^4.0.3",
+    "is-number": "^7.0.0",
+    "normalize-path": "^3.0.0",
+    "picomatch": "^2.3.1",
+    "source-map-js": "^1.0.2",
+    "readdirp": "^3.6.0",
+    "to-regex-range": "^5.0.1"
+  },
+  "scripts": {
+    "sass-dev": "sass --watch --update --style=expanded styles/bio.scss:styles/bio.css",
+    "sass-prod": "sass --no-source-map --style=compressed styles/bio.scss:styles/bio.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stang1207/bandsite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stang1207/bandsite/issues"
+  },
+  "homepage": "https://github.com/stang1207/bandsite#readme",
+  "description": ""
+}

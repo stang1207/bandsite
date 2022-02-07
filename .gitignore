@@ -1,0 +1,14 @@
+# Ignore css map
+*.css.map
+*.zip
+
+# OS generated files
+.DS_Store
+**/.DS_Store
+
+# node module
+node_modules/
+
+# Package lock json
+*.lock.json
+*.vscode

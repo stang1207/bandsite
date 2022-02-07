@@ -1,0 +1,123 @@
+@use './abstracts' as *;
+@use './base' as *;
+@use './layouts' as *;
+
+//Sections Padding
+.about,
+.gallery {
+  padding: 0 1.5rem 2rem 1.5rem;
+  @include tablet {
+    padding: 0 2.5rem 2.5rem 2.5rem;
+  }
+}
+
+//Section Fade In Animation With JS.
+.section--fade-in {
+  transition: transform 1s, opacity 1s;
+}
+.section--hidden {
+  opacity: 0;
+  transform: translateY(5rem);
+}
+
+//About the musicians section
+.about {
+  background: $color-primary-white;
+  @include justify-center;
+
+  &__content {
+    gap: 1rem;
+    @include flex-column;
+    @extend .container;
+    @extend .paragraph;
+    @include tablet {
+      padding: 0 3rem;
+    }
+  }
+
+  &__img-box {
+    aspect-ratio: 16 / 9;
+    min-height: 20vw;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    @include tablet {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__img {
+    border-radius: 0.5rem;
+    @include image-fit;
+  }
+
+  &__blockquote {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5;
+    @include flex-column;
+    @include tablet {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__citation {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  &__article {
+    @include flex-column;
+    gap: 1rem;
+  }
+
+  &__textbox {
+    margin-top: 0.5rem;
+    gap: 1rem;
+    @include flex-column;
+    @include tablet {
+      flex-direction: row;
+      justify-content: center;
+      gap: 2rem;
+    }
+  }
+}
+
+//Gallery Section
+.gallery {
+  background-color: $color-secondary-alabaster;
+  @include justify-center;
+  &__container {
+    @extend .container;
+  }
+
+  &__inner-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  &__item {
+    position: relative;
+    flex-basis: calc(100% / 1);
+    aspect-ratio: 16 / 9;
+    filter: grayscale(65%);
+    transition: all 0.2s;
+    &:hover {
+      filter: grayscale(0);
+    }
+    @include tablet {
+      aspect-ratio: 16 / 9;
+      flex-basis: calc(100% / 3 - 1.5rem);
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+
+  &__img {
+    border-radius: 0.2rem;
+    @include image-fit;
+  }
+}
