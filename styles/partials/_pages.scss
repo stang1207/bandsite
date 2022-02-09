@@ -1,23 +1,16 @@
 @use './abstracts' as *;
 @use './base' as *;
 @use './layouts' as *;
+@use './components' as *;
 
 //Sections Padding
 .about,
-.gallery {
+.gallery,
+.comments {
   padding: 0 1.5rem 2rem 1.5rem;
   @include tablet {
     padding: 0 2.5rem 2.5rem 2.5rem;
   }
-}
-
-//Section Fade In Animation With JS.
-.section--fade-in {
-  transition: transform 1s, opacity 1s;
-}
-.section--hidden {
-  opacity: 0;
-  transform: translateY(5rem);
 }
 
 //About the musicians section
@@ -97,27 +90,45 @@
     gap: 1.5rem;
   }
 
-  &__item {
-    position: relative;
-    flex-basis: calc(100% / 1);
-    aspect-ratio: 16 / 9;
-    filter: grayscale(65%);
-    transition: all 0.2s;
-    &:hover {
-      filter: grayscale(0);
-    }
+  //Individual gallery items are located in the component file
+}
+
+//Comments Section
+.comments {
+  background-color: $color-primary-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  //Container for the heading
+  &__container {
+    @extend .container;
+  }
+
+  //Centered small container for form and all the comments
+  &__container--small {
+    @extend .container--small;
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid $color-secondary-mercury;
+    padding-bottom: 1.5rem;
     @include tablet {
-      aspect-ratio: 16 / 9;
-      flex-basis: calc(100% / 3 - 1.5rem);
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
-      }
+      gap: 1.5rem;
     }
   }
 
-  &__img {
-    border-radius: 0.2rem;
-    @include image-fit;
+  &__user-photo {
+    border-radius: 50%;
+    max-width: 3rem;
+    max-height: 3rem;
+    margin-top: 1.5rem;
+    object-fit: cover;
   }
+
+  &__list {
+    @extend .container--small;
+    list-style: none;
+  }
+
+  //Individual comment are located in the component file
 }

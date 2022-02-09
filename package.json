@@ -25,7 +25,7 @@
     "to-regex-range": "^5.0.1"
   },
   "scripts": {
-    "sass-dev": "sass --watch --update --style=expanded styles/bio.scss:styles/bio.css",
+    "sass-dev": "sass --watch --update --style=expanded styles/shows.scss:styles/shows.css",
     "sass-prod": "sass --no-source-map --style=compressed styles/bio.scss:styles/bio.css"
   },
   "repository": {

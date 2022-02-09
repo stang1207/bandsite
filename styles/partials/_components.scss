@@ -1,0 +1,126 @@
+@use './abstracts' as *;
+@use './layouts' as *;
+@use './base' as *;
+
+//Black button component
+.btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 1rem 2rem;
+  color: $color-primary-white;
+  background-color: $color-primary-black;
+  border-radius: 0.3rem;
+  text-transform: uppercase;
+}
+
+// Gallery Image Items
+.gallery {
+  &__item {
+    position: relative;
+    flex-basis: calc(100% / 1);
+    aspect-ratio: 16 / 9;
+    filter: grayscale(65%);
+    transition: all 0.2s;
+    &:hover {
+      filter: grayscale(0);
+    }
+    @include tablet {
+      aspect-ratio: 16 / 9;
+      flex-basis: calc(100% / 3 - 1.5rem);
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+
+  &__img {
+    border-radius: 0.2rem;
+    @include image-fit;
+  }
+}
+
+//Form
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  &__input-field {
+    min-height: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25rem;
+    @include tablet {
+      min-height: 3rem;
+    }
+  }
+
+  &__label {
+    color: $color-primary-silver;
+  }
+
+  &__comment {
+    resize: vertical;
+  }
+
+  &__name,
+  &__comment {
+    @extend .paragraph;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.3125rem;
+    padding: 0.75rem;
+    background-color: $color-secondary-alabaster;
+    outline: 1px solid $color-secondary-mercury;
+    &:focus {
+      outline: 1px solid $color-primary-black;
+    }
+    @include tablet {
+      padding: 1rem;
+    }
+  }
+
+  &__btn {
+    @extend .btn;
+    align-self: flex-end;
+    border: none;
+  }
+}
+
+//Comment
+.comment {
+  @extend .paragraph;
+  display: flex;
+  padding: 2rem 0;
+  gap: 1rem;
+  border-bottom: 1px solid $color-secondary-mercury;
+
+  &__avatar {
+    border-radius: 50%;
+    max-width: 3rem;
+    max-height: 3rem;
+    object-fit: cover;
+  }
+
+  &__text-box {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__author {
+    flex: 1;
+    font-weight: 600;
+  }
+
+  &__date {
+    color: $color-primary-silver;
+  }
+
+  &__text {
+    flex-basis: 100%;
+  }
+}
