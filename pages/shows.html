@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BandSite</title>
+    <title>BandSite | Shows</title>
     <link rel="stylesheet" href="../styles/shows.css" />
+    <script defer src="../scripts/shows.js"></script>
   </head>
   <body>
     <header class="header">
@@ -39,7 +40,7 @@
           <iframe
             class="banner__iframe"
             allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1071204931&color=%23321524&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/153258067&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
           ></iframe>
         </div>
       </section>
@@ -48,7 +49,7 @@
       <section class="shows">
         <div class="shows__container">
           <h2 class="heading-secondary">Shows</h2>
-          <ul class="shows__list">
+          <!-- <ul class="shows__list">
             <li class="show">
               <div class="show__text-box">
                 <p class="show__title show__title--first">Date</p>
@@ -64,43 +65,12 @@
               </div>
               <button class="show__btn">Buy Tickets</button>
             </li>
-            <li class="show">
-              <div class="show__text-box">
-                <p class="show__title">Date</p>
-                <p class="show__date">Mon Sept 06 2021</p>
-              </div>
-              <div class="show__text-box">
-                <p class="show__title">Venue</p>
-                <p class="show__venue">Ronald Lane</p>
-              </div>
-              <div class="show__text-box">
-                <p class="show__title">Location</p>
-                <p class="show__location">San Francisco. CA</p>
-              </div>
-              <button class="show__btn">Buy Tickets</button>
-            </li>
-            <li class="show">
-              <div class="show__text-box">
-                <p class="show__title">Date</p>
-                <p class="show__date">Mon Sept 06 2021</p>
-              </div>
-              <div class="show__text-box">
-                <p class="show__title">Venue</p>
-                <p class="show__venue">Ronald Lane</p>
-              </div>
-              <div class="show__text-box">
-                <p class="show__title">Location</p>
-                <p class="show__location">San Francisco. CA</p>
-              </div>
-              <button class="show__btn">Buy Tickets</button>
-            </li>
-          </ul>
+          </ul> -->
         </div>
       </section>
     </main>
     <footer class="footer">
-      <!-- section class is only for fade in animation with javascript, experimental feature -->
-      <div class="footer__container section--fade-in">
+      <div class="footer__container">
         <section class="footer__social-media">
           <h2 class="footer__heading heading-secondary">Get in Touch</h2>
           <ul class="footer__social-list">
@@ -112,7 +82,7 @@
               >
                 <img
                   src="../assets/icons/SVG/Icon-instagram.svg"
-                  alt="instagram"
+                  alt="instagram icon"
                   class="footer__social-icon"
                 />
               </a>
@@ -125,7 +95,7 @@
               >
                 <img
                   src="../assets/icons/SVG/Icon-facebook.svg"
-                  alt="facebook"
+                  alt="facebook icon"
                   class="footer__social-icon"
                 />
               </a>
@@ -138,7 +108,7 @@
               >
                 <img
                   src="../assets/icons/SVG/Icon-twitter.svg"
-                  alt="twitter"
+                  alt="twitter icon"
                   class="footer__social-icon"
                 />
               </a>
@@ -146,7 +116,6 @@
           </ul>
         </section>
         <section class="footer__contacts">
-          <!-- This subheading is only for screen reader -->
           <h3
             aria-label="A list of contacts for the band"
             class="visually-hidden"
@@ -184,7 +153,7 @@
         <a href="./index.html" class="footer__logo-box">
           <img
             src="../assets/logo/Logo-bandsite.svg"
-            alt="logo"
+            alt="site logo"
             class="footer__logo"
           />
         </a>

@@ -2,25 +2,6 @@
 @use './layouts' as *;
 @use './base' as *;
 
-//Black button component
-.btn {
-  min-height: 2.5rem;
-  min-width: 9.375rem;
-  padding: 1rem 2rem;
-  cursor: pointer;
-  display: inline-block;
-  padding: 1rem 2rem;
-  color: $color-primary-white;
-  background-color: $color-primary-black;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  text-transform: uppercase;
-
-  &:hover {
-    background-color: $color-secondary-black;
-  }
-}
-
 .banner {
   @include justify-center;
   color: $color-primary-white;
@@ -126,7 +107,6 @@
       filter: grayscale(0);
     }
     @include tablet {
-      aspect-ratio: 16 / 9;
       flex-basis: calc(100% / 3 - 1.5rem);
       &:hover {
         transform: scale(1.05);
@@ -136,7 +116,7 @@
   }
 
   &__img {
-    border-radius: 0.2rem;
+    border-radius: 0.25rem;
     @include image-fit;
   }
 }
@@ -144,15 +124,13 @@
 //Form
 .form {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   gap: 1.5rem;
 
   &__group {
     min-height: 2.25rem;
-    display: flex;
-    flex-direction: column;
     row-gap: 0.25rem;
+    @include flex-column;
     @include tablet {
       min-height: 3rem;
     }
@@ -177,16 +155,11 @@
     @include tablet {
       padding: 1rem;
     }
-
-    &__comment {
-      resize: vertical;
-    }
   }
 
   &__btn {
     @extend .btn;
     align-self: flex-end;
-    border: none;
   }
 
   &__error {
@@ -235,9 +208,8 @@
 }
 
 .show {
+  @include flex-column;
   position: relative;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 0;
@@ -251,7 +223,6 @@
     width: calc(100% + 2rem + 2rem);
     transform: translateX(calc(-2rem));
     border-bottom: 1px solid $color-secondary-mercury;
-
     @include tablet {
       width: calc(100% + 1.5rem + 1.5rem);
       transform: translateX(calc(-1.5rem));
@@ -259,16 +230,15 @@
   }
 
   &:hover {
-    background-color: $color-secondary-alabaster;
-
     &::after {
       background-color: $color-secondary-alabaster;
-      z-index: 1;
     }
   }
 
   &:active {
-    background-color: $color-secondary-mercury;
+    &::after {
+      background-color: $color-secondary-mercury;
+    }
   }
 
   @include tablet {
@@ -277,10 +247,10 @@
   }
 
   &__text-box {
+    flex: 1;
     position: relative;
-    display: flex;
+    @include flex-column;
     justify-content: center;
-    flex-direction: column;
     gap: 0.5rem;
     z-index: 10;
   }
@@ -311,5 +281,23 @@
     @extend .btn;
     z-index: 10;
     border: none;
+  }
+}
+
+//Black button component
+.btn {
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  min-height: 2.5rem;
+  min-width: 9.375rem;
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $color-primary-white;
+  background-color: $color-primary-black;
+  &:hover {
+    background-color: $color-secondary-black;
   }
 }

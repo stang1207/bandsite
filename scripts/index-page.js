@@ -48,24 +48,26 @@ const commentDisplay = (function () {
 })();
 
 const commentController = (function () {
-  //Create individual comment node element related functions
-  const createNodeEl = (element, className, text) => {
+  //Create individual comment node element
+  const createNodeEl = (element, className, text, src, alt) => {
     const node = document.createElement(element);
     node.classList.add(className);
     node.textContent = text;
+    node.setAttribute('src', src);
+    node.setAttribute('alt', alt);
     return node;
   };
-  const createImgNode = (src, alt, className) => {
-    const img = document.createElement('img');
-    img.setAttribute('src', src);
-    img.setAttribute('alt', alt);
-    img.classList.add(className);
-    return img;
-  };
+
   const createComment = ({ name, date, comment, imgURL }) => {
     const currentDate = new Date().getTime();
     const li = createNodeEl('li', 'comment');
-    const imgNode = createImgNode(imgURL, 'default avatar', 'comment__avatar');
+    const imgNode = createNodeEl(
+      'img',
+      'comment__avatar',
+      undefined,
+      imgURL,
+      'default avatar'
+    );
     const textBox = createNodeEl('div', 'comment__text-box');
     const author = createNodeEl('p', 'comment__author', name);
     const dateNode = createNodeEl(
@@ -81,7 +83,7 @@ const commentController = (function () {
     textBox.appendChild(commentText);
     return li;
   };
-  //Building an actual array of comment node el
+  //Building an actual array of comments
   const createCommentNodeList = function () {
     const comments = commentData.retrieveData();
     return comments.map((comment) => createComment(comment));
@@ -116,7 +118,7 @@ const commentController = (function () {
     const comment = document.querySelector('.form__comment');
     const inputs = [name, comment];
     inputs.forEach((input) => {
-      input.addEventListener('input', function removeRedBorder() {
+      input.addEventListener('change', function removeRedOutline() {
         input.classList.remove('form__error');
       });
     });
@@ -128,11 +130,9 @@ const commentController = (function () {
       e.preventDefault();
       //Validate form values, stop the function if they are falsy
       if (formValidate() === false) return;
-      //Extract Form info
-      const commentObj = getFormValues();
-      //Insert data into database array
-      commentData.insertData(commentObj);
-      //Asks View objects to rebuilt the comment list and new comments
+      //Extract Form info and insert data into comments array
+      commentData.insertData(getFormValues());
+      //Asks View to rebuild the comment list and new comments
       commentDisplay(createCommentNodeList());
       //Clear Inputs
       e.target.name.value = '';

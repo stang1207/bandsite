@@ -3,11 +3,6 @@
 @use '../layouts' as *;
 @use '../components' as *;
 
-//Hide some specific headings on the homepage
-.visually-hidden {
-  @include visually-hidden;
-}
-
 //Sections' padding
 .about,
 .gallery,
@@ -18,16 +13,16 @@
   }
 }
 
-//About the musicians section
+//About section
 .about {
   background: $color-primary-white;
   @include justify-center;
 
   &__content {
     gap: 1rem;
-    @include flex-column;
     @extend .container;
     @extend .paragraph;
+    @include flex-column;
     @include tablet {
       padding: 0 3rem;
     }
@@ -37,13 +32,14 @@
     aspect-ratio: 16 / 9;
     min-height: 20vw;
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    overflow: hidden;
     @include tablet {
       margin-bottom: 1rem;
     }
   }
 
   &__img {
-    border-radius: 0.5rem;
     @include image-fit;
   }
 
@@ -88,7 +84,6 @@
   &__container {
     @extend .container;
   }
-
   &__inner-grid {
     display: flex;
     flex-wrap: wrap;
@@ -100,9 +95,8 @@
 //Comments Section
 .comments {
   background-color: $color-primary-white;
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  @include flex-column;
 
   //Container for the heading
   &__container {
@@ -133,6 +127,5 @@
     @extend .container--small;
     list-style: none;
   }
-
   //Individual comment are located in the component file
 }
