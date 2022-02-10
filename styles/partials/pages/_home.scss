@@ -1,9 +1,14 @@
-@use './abstracts' as *;
-@use './base' as *;
-@use './layouts' as *;
-@use './components' as *;
+@use '../abstracts' as *;
+@use '../base' as *;
+@use '../layouts' as *;
+@use '../components' as *;
 
-//Sections Padding
+//Hide some specific headings on the homepage
+.visually-hidden {
+  @include visually-hidden;
+}
+
+//Sections' padding
 .about,
 .gallery,
 .comments {
@@ -89,7 +94,6 @@
     flex-wrap: wrap;
     gap: 1.5rem;
   }
-
   //Individual gallery items are located in the component file
 }
 
@@ -105,7 +109,7 @@
     @extend .container;
   }
 
-  //Centered small container for form and all the comments
+  //Centered small container
   &__container--small {
     @extend .container--small;
     display: flex;

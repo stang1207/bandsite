@@ -4,13 +4,114 @@
 
 //Black button component
 .btn {
+  min-height: 2.5rem;
+  min-width: 9.375rem;
+  padding: 1rem 2rem;
   cursor: pointer;
   display: inline-block;
   padding: 1rem 2rem;
   color: $color-primary-white;
   background-color: $color-primary-black;
-  border-radius: 0.3rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
   text-transform: uppercase;
+
+  &:hover {
+    background-color: $color-secondary-black;
+  }
+}
+
+.banner {
+  @include justify-center;
+  color: $color-primary-white;
+  background-image: linear-gradient(
+      to right,
+      rgba(50, 50, 50, 0.5),
+      rgba(50, 50, 50, 0.5)
+    ),
+    url('../../assets/images/hero-bio.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 1.5rem;
+  @include tablet {
+    padding: 0 2.5rem;
+  }
+
+  &--show {
+    background-image: linear-gradient(
+        to right,
+        rgba(50, 50, 50, 0.5),
+        rgba(50, 50, 50, 0.5)
+      ),
+      url('../../assets/images/hero-shows.jpg');
+
+    padding: 1.5rem;
+    @include tablet {
+      padding: 2.5rem;
+    }
+  }
+
+  &__container {
+    @extend .container;
+    min-height: 70vw;
+    aspect-ratio: 16 / 9;
+    animation-name: fadeIntoRight;
+    animation-duration: 1.6s;
+    animation-timing-function: ease-out;
+
+    //Shows
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1.5rem;
+
+    @include tablet {
+      min-height: 70vh;
+      gap: 2rem;
+    }
+
+    @include desktop {
+      min-height: 65vh;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4rem;
+    }
+  }
+
+  &__heading {
+    @extend .heading-primary;
+    width: 55%;
+
+    @include tablet {
+      width: 65%;
+    }
+    @include desktop {
+      width: 75%;
+      transform: translateY(-1.8rem);
+    }
+    &--small {
+      font-size: 0.9rem;
+      display: block;
+
+      @include tablet {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__iframe {
+    width: 100%;
+    max-height: 9rem;
+    border: none;
+    border-radius: 0.5rem;
+    @include tablet {
+      width: 70%;
+      min-height: 12rem;
+    }
+  }
 }
 
 // Gallery Image Items
@@ -47,7 +148,7 @@
   flex-direction: column;
   gap: 1.5rem;
 
-  &__input-field {
+  &__group {
     min-height: 2.25rem;
     display: flex;
     flex-direction: column;
@@ -59,10 +160,6 @@
 
   &__label {
     color: $color-primary-silver;
-  }
-
-  &__comment {
-    resize: vertical;
   }
 
   &__name,
@@ -80,12 +177,24 @@
     @include tablet {
       padding: 1rem;
     }
+
+    &__comment {
+      resize: vertical;
+    }
   }
 
   &__btn {
     @extend .btn;
     align-self: flex-end;
     border: none;
+  }
+
+  &__error {
+    outline: 1px solid lightcoral;
+  }
+
+  &__success {
+    outline: 1px solid lightgreen;
   }
 }
 
@@ -122,5 +231,85 @@
 
   &__text {
     flex-basis: 100%;
+  }
+}
+
+.show {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  transition: all 0.2s;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: calc(100% + 2rem + 2rem);
+    transform: translateX(calc(-2rem));
+    border-bottom: 1px solid $color-secondary-mercury;
+
+    @include tablet {
+      width: calc(100% + 1.5rem + 1.5rem);
+      transform: translateX(calc(-1.5rem));
+    }
+  }
+
+  &:hover {
+    background-color: $color-secondary-alabaster;
+
+    &::after {
+      background-color: $color-secondary-alabaster;
+      z-index: 1;
+    }
+  }
+
+  &:active {
+    background-color: $color-secondary-mercury;
+  }
+
+  @include tablet {
+    flex-direction: row;
+    padding: 1.5rem 0;
+  }
+
+  &__text-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 10;
+  }
+
+  &__title {
+    color: $color-primary-silver;
+    @include tablet {
+      display: none;
+    }
+
+    &--first {
+      @include tablet {
+        display: block;
+        position: absolute;
+        transform: translate(1rem, -2.5rem);
+      }
+      @include desktop {
+        transform: translate(1rem, -4rem);
+      }
+    }
+  }
+
+  &__date {
+    font-weight: 600;
+  }
+
+  &__btn {
+    @extend .btn;
+    z-index: 10;
+    border: none;
   }
 }

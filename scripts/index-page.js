@@ -7,17 +7,23 @@ const commentData = (function () {
       date: 1613597582000,
       comment:
         'This is art. This is inexplicable magic expressed in the purest way, everything that makes up this majestic work deserves reverence. Let us appreciate this for what it is and what it contains.',
+      imgURL:
+        'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg',
     },
     {
       name: 'Emilie Beach',
       date: 1610227982000,
       comment:
         'I feel blessed to have seen them in person. What a show! They were just perfection. If there was one day of my life I could relive, this would be it. What an incredible day.',
+      imgURL:
+        'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg',
     },
     {
       name: 'Miles Acosta',
       date: 1608499982000,
       comment: `I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.`,
+      imgURL:
+        'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg',
     },
   ];
   const retrieveData = () => comments;
@@ -56,15 +62,10 @@ const commentController = (function () {
     img.classList.add(className);
     return img;
   };
-  const createComment = ({
-    name,
-    date,
-    comment,
-    img = 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg',
-  }) => {
+  const createComment = ({ name, date, comment, imgURL }) => {
     const currentDate = new Date().getTime();
     const li = createNodeEl('li', 'comment');
-    const imgNode = createImgNode(img, 'default avatar', 'comment__avatar');
+    const imgNode = createImgNode(imgURL, 'default avatar', 'comment__avatar');
     const textBox = createNodeEl('div', 'comment__text-box');
     const author = createNodeEl('p', 'comment__author', name);
     const dateNode = createNodeEl(
@@ -78,7 +79,6 @@ const commentController = (function () {
     textBox.appendChild(author);
     textBox.appendChild(dateNode);
     textBox.appendChild(commentText);
-
     return li;
   };
   //Building an actual array of comment node el
@@ -87,17 +87,47 @@ const commentController = (function () {
     return comments.map((comment) => createComment(comment));
   };
   //Retrieve values from form and event listener
+  const formValidate = () => {
+    const name = document.querySelector('.form__name');
+    const comment = document.querySelector('.form__comment');
+    if (!name.value) name.classList.add('form__error');
+    if (!comment.value) comment.classList.add('form__error');
+    if (!name.value || !comment.value) return false;
+  };
+
   const getFormValues = () => {
     const name = document.querySelector('.form__name').value;
     const comment = document.querySelector('.form__comment').value;
-    if (!name || !comment) return;
     const date = new Date().getTime();
-    return { name, date, comment };
+    //Default avatar image
+    const imgURL =
+      'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg';
+
+    return {
+      name,
+      comment,
+      date,
+      imgURL,
+    };
   };
+
+  const inputEventListener = () => {
+    const name = document.querySelector('.form__name');
+    const comment = document.querySelector('.form__comment');
+    const inputs = [name, comment];
+    inputs.forEach((input) => {
+      input.addEventListener('input', function removeRedBorder() {
+        input.classList.remove('form__error');
+      });
+    });
+  };
+
   const addFormEventListener = function () {
     const form = document.querySelector('.form');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      //Validate form values, stop the function if they are falsy
+      if (formValidate() === false) return;
       //Extract Form info
       const commentObj = getFormValues();
       //Insert data into database array
@@ -112,6 +142,7 @@ const commentController = (function () {
   //Starting the app
   const init = (function () {
     //Add Form event listener
+    inputEventListener();
     addFormEventListener();
     //Create list and append comment list container when the app runs
     const commentSection = document.querySelector('.comments');
