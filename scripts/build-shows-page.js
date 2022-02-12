@@ -86,6 +86,15 @@ const showController = (function () {
     li.appendChild(venueTextBox);
     li.appendChild(locationTextBox);
     li.appendChild(btn);
+    li.addEventListener('click', function () {
+      li.classList.toggle('show--active');
+    });
+    li.addEventListener('mouseenter', function () {
+      li.classList.add('show--hover');
+    });
+    li.addEventListener('mouseleave', function () {
+      li.classList.remove('show--hover');
+    });
     return li;
   };
   //Building an actual array of comment node el
@@ -93,14 +102,22 @@ const showController = (function () {
     const shows = showData.retrieveData();
     return shows.map((show, index) => createShowEl(index, show));
   };
-
   //Starting the app
   const init = (function () {
-    const showSection = document.querySelector('.shows__container');
-    console.log(showSection);
+    const showSection = document.querySelector('.shows');
     showSection.appendChild(createNodeEl('ul', 'shows__list'));
     const shows = createShowNodeList();
     showDisplay(shows);
-    console.log(shows);
   })();
 })();
+
+//Sticky navbar event listener
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  const height = nav.getBoundingClientRect().height;
+  if (window.scrollY >= height) {
+    nav.classList.add('nav__sticky');
+  } else {
+    nav.classList.remove('nav__sticky');
+  }
+});

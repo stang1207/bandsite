@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/bio.css" />
-    <script defer type="module" src="./scripts/index-page.js"></script>
     <title>BandSite | Biography</title>
   </head>
   <body>
@@ -15,7 +14,7 @@
           <a href="./index.html" class="nav__logo-box">
             <img
               src="./assets/logo/Logo-bandsite.svg"
-              alt="logo"
+              alt="website logo"
               class="nav__logo"
             />
           </a>
@@ -31,14 +30,14 @@
           </ul>
         </div>
       </nav>
-      <section class="banner">
+      <section class="banner banner--home">
         <div class="banner__container">
           <h1 class="heading-primary">The Bees Knees</h1>
         </div>
       </section>
     </header>
     <main class="main">
-      <section class="about">
+      <section class="about section--fade-in">
         <div class="about__container">
           <h2 class="heading-secondary">About the Musicians</h2>
           <article class="about__content">
@@ -49,7 +48,7 @@
               <img
                 class="about__img"
                 src="assets/images/band.jpg"
-                alt="The Bees Kness concert performance image"
+                alt="a picture of The Bees Kness performaning on stage"
               />
             </div>
             <figure class="about__blockquote">
@@ -95,81 +94,81 @@
           </article>
         </div>
       </section>
-      <section class="gallery">
+      <section class="gallery section--fade-in">
         <div class="gallery__container">
           <h2 class="heading-secondary">Photo Gallery</h2>
           <div class="gallery__inner-grid">
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-1.jpg"
-                alt="concert image"
+                alt="a large group of audiences enjoying the concert"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-2.jpg"
-                alt="concert image"
+                alt="a girl in a crowded concert putting her hands up"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-3.jpg"
-                alt="concert image"
+                alt="a large group of audiences putting their hands up in a concert"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-4.jpg"
-                alt="concert image"
+                alt="a girl in a concert siting on someone's shoulders and enjoying the concert"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-5.jpg"
-                alt="concert image"
+                alt="a large group of audiences listening to some music in a concert"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-6.jpg"
-                alt="concert image"
+                alt="a singer performaning on the stage for some audiences"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-7.jpg"
-                alt="concert image"
+                alt="a picture of a concert laser show"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-8.jpg"
-                alt="concert image"
+                alt="a picture of a DJ set"
                 class="gallery__img"
               />
             </div>
             <div class="gallery__item">
               <img
                 src="./assets/images/Photo-gallery-9.jpg"
-                alt="concert image"
+                alt="a crowded concert filled with people putting their hands up"
                 class="gallery__img"
               />
             </div>
           </div>
         </div>
       </section>
-      <section class="comments">
+      <section class="comments section--fade-in">
         <div class="comments__container">
           <h2 class="heading-secondary">Join the Conversation</h2>
         </div>
-        <div class="comments__container--small">
+        <section class="comments__container--small">
           <img
             src="./assets/images/Mohan-muruge.jpg"
             alt="user photo"
@@ -178,20 +177,27 @@
           <form action="#" class="form">
             <div class="form__group">
               <label for="name" class="form__label">Name</label>
-              <input type="text" name="name" id="name" class="form__name" />
+              <input
+                type="text"
+                name="name"
+                id="name"
+                class="form__name"
+                placeholder="Enter your name"
+              />
             </div>
             <div class="form__group">
               <label for="comment" class="form__label">Comment</label>
               <textarea
                 id="comment"
                 name="comment"
-                rows="4"
+                rows="5"
                 class="form__comment"
+                placeholder="Add a new comment"
               ></textarea>
             </div>
             <button class="form__btn">Comment</button>
           </form>
-        </div>
+        </section>
       </section>
     </main>
     <footer class="footer">
@@ -287,5 +293,6 @@
         </small>
       </div>
     </footer>
+    <script type="module" src="./scripts/index-page.js"></script>
   </body>
 </html>

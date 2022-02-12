@@ -1,5 +1,43 @@
-@use './partials/abstracts';
-@use './partials/base';
-@use './partials/layouts';
-@use './partials/components';
-@use './partials/pages/shows';
+@use './partials/abstracts' as *;
+@use './partials/base' as *;
+@use './partials/layouts' as *;
+@use './partials/components' as *;
+
+.main {
+  @include justify-center;
+  background-color: $color-brand-tertiary;
+  padding: 0 1.5rem;
+  @include tablet {
+    padding: 0 2.5rem;
+  }
+}
+
+.shows {
+  @extend .container;
+  @include flex-column;
+
+  //padding and flex direction change
+  padding-bottom: 1.5rem;
+  @include tablet {
+    padding-bottom: 2.5rem;
+    gap: 1.5rem;
+  }
+  @include desktop {
+    flex-direction: row;
+    gap: 6rem;
+  }
+
+  //Title and shows container
+  &__heading {
+    @extend .heading-secondary;
+  }
+  &__list {
+    @extend .paragraph;
+    flex: 1;
+    list-style: none;
+    @include flex-column;
+    @include desktop {
+      margin-top: 5.5rem;
+    }
+  }
+}

@@ -1,25 +1,26 @@
 @use './abstracts' as *;
+
 // Fonts import
 @font-face {
   font-family: 'AvenirNextLTPro';
-  src: url('../../assets/fonts/AvenirNextLTPro-Regular.otf') format('opentype'),
-    url('../../assets/fonts/Alternative\ files/AvenirNextLTPro.ttf')
+  src: url('../assets/fonts/AvenirNextLTPro-Regular.otf') format('opentype'),
+    url('../assets/fonts/Alternative\ files/AvenirNextLTPro.ttf')
       format('truetype');
   font-weight: 400;
 }
 
 @font-face {
   font-family: 'AvenirNextLTPro';
-  src: url('../../assets/fonts/AvenirNextLTPro-Bold.otf') format('opentype'),
-    url('../../assets/fonts/Alternative\ files/AvenirNextLTProBold.ttf')
+  src: url('../assets/fonts/AvenirNextLTPro-Bold.otf') format('opentype'),
+    url('../assets/fonts/Alternative\ files/AvenirNextLTProBold.ttf')
       format('truetype');
   font-weight: 600;
 }
 
 @font-face {
   font-family: 'AvenirNextLTPro';
-  src: url('../../assets/fonts/AvenirNextLTPro-Demi.otf') format('opentype'),
-    url('../../assets/fonts/Alternative\ files/AvenirNextLTProDemi.ttf')
+  src: url('../assets/fonts/AvenirNextLTPro-Demi.otf') format('opentype'),
+    url('../assets/fonts/Alternative\ files/AvenirNextLTProDemi.ttf')
       format('truetype');
   font-weight: 600;
 }
@@ -28,8 +29,8 @@
 body {
   box-sizing: border-box;
   font-family: 'AvenirNextLTPro';
-  color: $color-primary-black;
-  background: $color-primary-black;
+  color: $color-brand-primary;
+  background: $color-brand-primary;
   overflow-x: hidden;
 }
 

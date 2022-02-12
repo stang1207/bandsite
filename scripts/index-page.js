@@ -102,8 +102,7 @@ const commentController = (function () {
     const comment = document.querySelector('.form__comment').value;
     const date = new Date().getTime();
     //Default avatar image
-    const imgURL =
-      'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg';
+    const imgURL = './assets/images/Mohan-muruge.jpg';
 
     return {
       name,
@@ -152,3 +151,14 @@ const commentController = (function () {
     commentDisplay(comments);
   })();
 })();
+
+//Sticky navbar event listener
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  const height = nav.getBoundingClientRect().height;
+  if (window.scrollY >= height) {
+    nav.classList.add('nav__sticky');
+  } else {
+    nav.classList.remove('nav__sticky');
+  }
+});

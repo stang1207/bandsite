@@ -2,21 +2,28 @@
 @use './layouts' as *;
 @use './base' as *;
 
+//Banner for both home and shows page
 .banner {
   @include justify-center;
-  color: $color-primary-white;
-  background-image: linear-gradient(
-      to right,
-      rgba(50, 50, 50, 0.5),
-      rgba(50, 50, 50, 0.5)
-    ),
-    url('../../assets/images/hero-bio.jpg');
+  color: $color-brand-tertiary;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+  //banner paddings
   padding: 0 1.5rem;
   @include tablet {
     padding: 0 2.5rem;
+  }
+
+  //Different background images for different pages
+  &--home {
+    background-image: linear-gradient(
+        to right,
+        rgba(50, 50, 50, 0.5),
+        rgba(50, 50, 50, 0.5)
+      ),
+      url('../../assets/images/hero-bio.jpg');
   }
 
   &--show {
@@ -26,45 +33,41 @@
         rgba(50, 50, 50, 0.5)
       ),
       url('../../assets/images/hero-shows.jpg');
-
-    padding: 1.5rem;
-    @include tablet {
-      padding: 2.5rem;
-    }
   }
 
+  //Center container styles
   &__container {
     @extend .container;
-    min-height: 70vw;
-    aspect-ratio: 16 / 9;
+
+    //Show page styles
+    @include flex-column;
+    justify-content: center;
+    gap: 1rem;
+
+    //Fade-in animation for banner
     animation-name: fadeIntoRight;
     animation-duration: 1.6s;
     animation-timing-function: ease-out;
 
-    //Shows
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1.5rem;
+    //height, and layout
+    min-height: 55vh;
 
     @include tablet {
       min-height: 70vh;
       gap: 2rem;
     }
-
     @include desktop {
-      min-height: 65vh;
+      min-height: 80vh;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
       gap: 4rem;
     }
   }
-
+  //Heading and iframe for the show page only
   &__heading {
     @extend .heading-primary;
-    width: 55%;
+    width: 90%;
 
     @include tablet {
       width: 65%;
@@ -76,7 +79,6 @@
     &--small {
       font-size: 0.9rem;
       display: block;
-
       @include tablet {
         font-size: 1.5rem;
       }
@@ -85,9 +87,9 @@
 
   &__iframe {
     width: 100%;
-    max-height: 9rem;
+    max-height: 7rem;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     @include tablet {
       width: 70%;
       min-height: 12rem;
@@ -137,7 +139,7 @@
   }
 
   &__label {
-    color: $color-primary-silver;
+    color: $dim-brand-primary;
   }
 
   &__name,
@@ -147,10 +149,13 @@
     border: none;
     border-radius: 0.3125rem;
     padding: 0.75rem;
-    background-color: $color-secondary-alabaster;
-    outline: 1px solid $color-secondary-mercury;
+    outline: 1px solid $dim-brand-primary;
+    &::placeholder {
+      color: $color-brand-primary;
+      opacity: 0.9;
+    }
     &:focus {
-      outline: 1px solid $color-primary-black;
+      outline: 1px solid $color-brand-primary;
     }
     @include tablet {
       padding: 1rem;
@@ -161,23 +166,22 @@
     @extend .btn;
     align-self: flex-end;
   }
-
   &__error {
-    outline: 1px solid lightcoral;
-  }
-
-  &__success {
-    outline: 1px solid lightgreen;
+    outline: 1px solid #d22d2d;
   }
 }
 
-//Comment
+//Individual comment
 .comment {
   @extend .paragraph;
   display: flex;
   padding: 2rem 0;
   gap: 1rem;
-  border-bottom: 1px solid $color-secondary-mercury;
+  border-bottom: 1px solid $dim-brand-primary;
+
+  @include tablet {
+    gap: 1.5rem;
+  }
 
   &__avatar {
     border-radius: 50%;
@@ -199,7 +203,7 @@
   }
 
   &__date {
-    color: $color-primary-silver;
+    color: $color-brand-secondary;
   }
 
   &__text {
@@ -207,80 +211,52 @@
   }
 }
 
+//Individual show detail box
 .show {
+  cursor: pointer;
   @include flex-column;
-  position: relative;
-  justify-content: space-between;
+  border-bottom: 1px solid $dim-brand-primary;
+  margin: 0 -1.5rem;
+  padding: 1rem 1.5rem;
   gap: 1rem;
-  padding: 1rem 0;
-  transition: all 0.2s;
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    height: 100%;
-    width: calc(100% + 2rem + 2rem);
-    transform: translateX(calc(-2rem));
-    border-bottom: 1px solid $color-secondary-mercury;
-    @include tablet {
-      width: calc(100% + 1.5rem + 1.5rem);
-      transform: translateX(calc(-1.5rem));
-    }
-  }
-
-  &:hover {
-    &::after {
-      background-color: $color-secondary-alabaster;
-    }
-  }
-
-  &:active {
-    &::after {
-      background-color: $color-secondary-mercury;
-    }
-  }
-
   @include tablet {
+    gap: 0;
     flex-direction: row;
-    padding: 1.5rem 0;
   }
-
+  @include desktop {
+    padding: 1.5rem 1.125rem;
+  }
+  &--hover {
+    background-color: $dim-brand-secondary;
+  }
+  &--active {
+    background-color: $dim-brand-primary;
+    z-index: 1000;
+  }
   &__text-box {
     flex: 1;
-    position: relative;
     @include flex-column;
     justify-content: center;
     gap: 0.5rem;
-    z-index: 10;
   }
-
   &__title {
-    color: $color-primary-silver;
+    color: $color-brand-secondary;
     @include tablet {
       display: none;
     }
-
     &--first {
       @include tablet {
         display: block;
         position: absolute;
-        transform: translate(1rem, -2.5rem);
-      }
-      @include desktop {
-        transform: translate(1rem, -4rem);
+        transform: translate(0.8rem, -4rem);
       }
     }
   }
-
   &__date {
     font-weight: 600;
   }
-
   &__btn {
     @extend .btn;
-    z-index: 10;
-    border: none;
   }
 }
 
@@ -295,9 +271,9 @@
   padding: 1rem 2rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: $color-primary-white;
-  background-color: $color-primary-black;
+  color: $color-brand-tertiary;
+  background-color: $color-brand-primary;
   &:hover {
-    background-color: $color-secondary-black;
+    background-color: $hilite-brand-primary;
   }
 }

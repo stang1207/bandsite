@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BandSite | Shows</title>
     <link rel="stylesheet" href="../styles/shows.css" />
-    <script defer src="../scripts/shows.js"></script>
+    <script defer src="../scripts/build-shows-page.js"></script>
   </head>
   <body>
     <header class="header">
@@ -15,7 +15,7 @@
           <a href="../index.html" class="nav__logo-box">
             <img
               src="../assets/logo/Logo-bandsite.svg"
-              alt="logo"
+              alt="website logo"
               class="nav__logo"
             />
           </a>
@@ -39,34 +39,14 @@
           </h1>
           <iframe
             class="banner__iframe"
-            allow="autoplay"
             src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/153258067&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
           ></iframe>
         </div>
       </section>
     </header>
-    <main>
+    <main class="main">
       <section class="shows">
-        <div class="shows__container">
-          <h2 class="heading-secondary">Shows</h2>
-          <!-- <ul class="shows__list">
-            <li class="show">
-              <div class="show__text-box">
-                <p class="show__title show__title--first">Date</p>
-                <p class="show__date">Mon Sept 06 2021</p>
-              </div>
-              <div class="show__text-box">
-                <p class="show__title show__title--first">Venue</p>
-                <p class="show__venue">Ronald Lane</p>
-              </div>
-              <div class="show__text-box">
-                <p class="show__title show__title--first">Location</p>
-                <p class="show__location">San Francisco. CA</p>
-              </div>
-              <button class="show__btn">Buy Tickets</button>
-            </li>
-          </ul> -->
-        </div>
+        <h2 class="shows__heading">Shows</h2>
       </section>
     </main>
     <footer class="footer">
@@ -82,7 +62,7 @@
               >
                 <img
                   src="../assets/icons/SVG/Icon-instagram.svg"
-                  alt="instagram icon"
+                  alt="instagram"
                   class="footer__social-icon"
                 />
               </a>
@@ -95,7 +75,7 @@
               >
                 <img
                   src="../assets/icons/SVG/Icon-facebook.svg"
-                  alt="facebook icon"
+                  alt="facebook"
                   class="footer__social-icon"
                 />
               </a>
@@ -108,7 +88,7 @@
               >
                 <img
                   src="../assets/icons/SVG/Icon-twitter.svg"
-                  alt="twitter icon"
+                  alt="twitter"
                   class="footer__social-icon"
                 />
               </a>
@@ -150,10 +130,10 @@
             </a>
           </address>
         </section>
-        <a href="./index.html" class="footer__logo-box">
+        <a href="../index.html" class="footer__logo-box">
           <img
             src="../assets/logo/Logo-bandsite.svg"
-            alt="site logo"
+            alt="logo"
             class="footer__logo"
           />
         </a>
