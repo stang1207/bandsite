@@ -96,6 +96,8 @@
 // Gallery Image Items
 .gallery {
   &__item {
+    border-radius: 0.25rem;
+    overflow: hidden;
     position: relative;
     flex-basis: calc(100% / 1);
     aspect-ratio: 16 / 9;
@@ -114,7 +116,6 @@
   }
 
   &__img {
-    border-radius: 0.25rem;
     @include image-fit;
   }
 }
