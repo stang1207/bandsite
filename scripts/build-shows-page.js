@@ -57,11 +57,11 @@ const showController = (function () {
     return node;
   };
 
-  const createShowColumn = (title, data, index) => {
+  const createShowColumn = (title, data, dataClassName, index) => {
     const showColumnBox = createNodeEl('div', 'show__text-box');
     const showColumnTitle = createNodeEl('p', 'show__title', title);
     if (index === 0) showColumnTitle.classList.add('show__title--first');
-    const dataEl = createNodeEl('p', 'show__date', data);
+    const dataEl = createNodeEl('p', dataClassName, data);
     showColumnBox.appendChild(showColumnTitle);
     showColumnBox.appendChild(dataEl);
     return showColumnBox;
@@ -69,9 +69,14 @@ const showController = (function () {
 
   const createShowEl = ({ date, venue, location }, index) => {
     const li = createNodeEl('li', 'show');
-    const dateColumn = createShowColumn('Date', date, index);
-    const venueColumn = createShowColumn('Venue', venue, index);
-    const locationColumn = createShowColumn('Location', location, index);
+    const dateColumn = createShowColumn('Date', date, 'show__date', index);
+    const venueColumn = createShowColumn('Venue', venue, 'show__venue', index);
+    const locationColumn = createShowColumn(
+      'Location',
+      location,
+      'show__location',
+      index
+    );
     const btn = createNodeEl('button', 'show__btn', 'Buy Tickets');
 
     li.appendChild(dateColumn);
