@@ -12,3 +12,7 @@ node_modules/
 # Package lock json
 *.lock.json
 *.vscode
+
+# Prettier and eslint config
+*.prettierrc
+*.eslintrc.js

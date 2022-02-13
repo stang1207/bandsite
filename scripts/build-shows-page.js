@@ -32,26 +32,22 @@ const showData = (function () {
     },
   ];
   const retrieveData = () => shows;
-  const insertData = (show) => comments.appendChild(show);
+  const insertData = (show) => shows.appendChild(show);
   return { retrieveData, insertData };
 })();
 
 const showDisplay = (function () {
-  const displayShow = (show, container) => {
-    return container.appendChild(show);
-  };
-  const buildShows = function (list) {
+  const buildShows = (showList) => {
     const showListContainer = document.querySelector('.shows__list');
     showListContainer.innerHTML = '';
-    list.forEach((show) => {
-      return displayShow(show, showListContainer);
+    showList.forEach((show) => {
+      return showListContainer.appendChild(show);
     });
   };
-  {
-    return buildShows;
-  }
+  return buildShows;
 })();
 
+// eslint-disable-next-line no-unused-vars
 const showController = (function () {
   //Create individual comment node element related functions
   const createNodeEl = (element, className, text) => {
@@ -61,63 +57,60 @@ const showController = (function () {
     return node;
   };
 
-  const createShowEl = (index, { date, venue, location }) => {
+  const createShowColumn = (title, data, index) => {
+    const showColumnBox = createNodeEl('div', 'show__text-box');
+    const showColumnTitle = createNodeEl('p', 'show__title', title);
+    if (index === 0) showColumnTitle.classList.add('show__title--first');
+    const dataEl = createNodeEl('p', 'show__date', data);
+    showColumnBox.appendChild(showColumnTitle);
+    showColumnBox.appendChild(dataEl);
+    return showColumnBox;
+  };
+
+  const createShowEl = ({ date, venue, location }, index) => {
     const li = createNodeEl('li', 'show');
-    const dateTextBox = createNodeEl('div', 'show__text-box');
-    const dateTitle = createNodeEl('p', 'show__title', 'Date');
-    if (index === 0) dateTitle.classList.add('show__title--first');
-    const dateEl = createNodeEl('p', 'show__date', date);
-    dateTextBox.appendChild(dateTitle);
-    dateTextBox.appendChild(dateEl);
-    const venueTextBox = createNodeEl('div', 'show__text-box');
-    const venueTitle = createNodeEl('p', 'show__title', 'Venue');
-    if (index === 0) venueTitle.classList.add('show__title--first');
-    const venueEl = createNodeEl('p', 'show__venue', venue);
-    venueTextBox.appendChild(venueTitle);
-    venueTextBox.appendChild(venueEl);
-    const locationTextBox = createNodeEl('div', 'show__text-box');
-    const locationTitle = createNodeEl('p', 'show__title', 'Location');
-    if (index === 0) locationTitle.classList.add('show__title--first');
-    const locationEl = createNodeEl('p', 'show__location', location);
-    locationTextBox.appendChild(locationTitle);
-    locationTextBox.appendChild(locationEl);
+    const dateColumn = createShowColumn('Date', date, index);
+    const venueColumn = createShowColumn('Venue', venue, index);
+    const locationColumn = createShowColumn('Location', location, index);
     const btn = createNodeEl('button', 'show__btn', 'Buy Tickets');
-    li.appendChild(dateTextBox);
-    li.appendChild(venueTextBox);
-    li.appendChild(locationTextBox);
+
+    li.appendChild(dateColumn);
+    li.appendChild(venueColumn);
+    li.appendChild(locationColumn);
     li.appendChild(btn);
-    li.addEventListener('click', function () {
-      li.classList.toggle('show--active');
-    });
-    li.addEventListener('mouseenter', function () {
-      li.classList.add('show--hover');
-    });
-    li.addEventListener('mouseleave', function () {
-      li.classList.remove('show--hover');
-    });
+
+    li.addEventListener('click', () => li.classList.toggle('show--active'));
+    li.addEventListener('mouseenter', () => li.classList.add('show--hover'));
+    li.addEventListener('mouseleave', () => li.classList.remove('show--hover'));
+
     return li;
   };
   //Building an actual array of comment node el
-  const createShowNodeList = function () {
+  const createShowNodeList = () => {
     const shows = showData.retrieveData();
-    return shows.map((show, index) => createShowEl(index, show));
+    return shows.map((show, index) => createShowEl(show, index));
   };
   //Starting the app
-  const init = (function () {
+  const init = () => {
     const showSection = document.querySelector('.shows');
     showSection.appendChild(createNodeEl('ul', 'shows__list'));
     const shows = createShowNodeList();
     showDisplay(shows);
-  })();
+  };
+  init();
 })();
 
-//Sticky navbar event listener
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav');
-  const height = nav.getBoundingClientRect().height;
-  if (window.scrollY >= height) {
-    nav.classList.add('nav__sticky');
-  } else {
-    nav.classList.remove('nav__sticky');
-  }
+//Sticky navbar
+const header = document.querySelector('.header');
+const navbar = document.querySelector('.nav');
+const createStickyNavbar = (entries) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) navbar.classList.add('nav__sticky');
+  else navbar.classList.remove('nav__sticky');
+};
+const headerObserver = new IntersectionObserver(createStickyNavbar, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navbar.getBoundingClientRect().height}px`,
 });
+headerObserver.observe(header);

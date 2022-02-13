@@ -10,10 +10,21 @@
   width: 100%;
   max-width: 37.5rem;
 }
-// avbar (Hero banner is in the component file)
+
+.header {
+  @include flex-column;
+  min-height: 65vh;
+  @include tablet {
+    min-height: 83vh;
+  }
+  @include desktop {
+    min-height: 90vh;
+  }
+}
+
+//Navbar (Hero banner is in the component file)
 .nav {
   //Navbar padding
-
   padding: 1.5rem 0 0 0;
   @include justify-center;
   @include tablet {
@@ -22,18 +33,15 @@
 
   //Navbar fade-in animation
   animation-name: fadeIntoRight;
-  animation-duration: 1.3s;
+  animation-duration: 1.25s;
   animation-timing-function: ease-out;
   gap: 1rem;
 
   &__sticky {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
+    z-index: 1000;
     background-color: $color-brand-primary;
-    z-index: 100;
-    transition: all 0.5s;
   }
 
   //Nav container that contains everything

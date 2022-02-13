@@ -2,8 +2,9 @@ export default function (currentTimestamp, targetDateTimestamp) {
   const currentSeconds = Math.floor(currentTimestamp / 1000);
   const targetSeconds = Math.floor(targetDateTimestamp / 1000);
   const diff = currentSeconds - targetSeconds;
+
   if (diff < 60) {
-    return `Just now`;
+    return 'Just now';
   } else if (diff < 3600) {
     return `${Math.floor(diff / 60)} minutes ago`;
   } else if (diff < 86400) {

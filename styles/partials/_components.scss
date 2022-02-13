@@ -4,6 +4,7 @@
 
 //Banner for both home and shows page
 .banner {
+  flex: 1;
   @include justify-center;
   color: $color-brand-tertiary;
   background-size: cover;
@@ -42,22 +43,17 @@
     //Show page styles
     @include flex-column;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
 
     //Fade-in animation for banner
     animation-name: fadeIntoRight;
     animation-duration: 1.6s;
     animation-timing-function: ease-out;
 
-    //height, and layout
-    min-height: 55vh;
-
     @include tablet {
-      min-height: 70vh;
       gap: 2rem;
     }
     @include desktop {
-      min-height: 80vh;
       flex-direction: row;
       align-items: center;
       justify-content: flex-start;
@@ -231,7 +227,6 @@
   }
   &--active {
     background-color: $dim-brand-primary;
-    z-index: 1000;
   }
   &__text-box {
     flex: 1;

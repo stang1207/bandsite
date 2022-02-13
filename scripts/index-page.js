@@ -21,7 +21,8 @@ const commentData = (function () {
     {
       name: 'Miles Acosta',
       date: 1608499982000,
-      comment: `I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.`,
+      comment:
+        "I can't stop listening. Every time I hear one of their songs - the vocals - it gives me goosebumps. Shivers straight down my spine. What a beautiful expression of creativity. Can't get enough.",
       imgURL:
         'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-1.jpg',
     },
@@ -32,21 +33,18 @@ const commentData = (function () {
 })();
 
 const commentDisplay = (function () {
-  const displayComment = (comment, container) => {
-    return container.appendChild(comment);
-  };
-  const buildComments = function (list) {
+  const buildComments = function (commentList) {
     const commnetListContainer = document.querySelector('.comments__list');
     commnetListContainer.innerHTML = '';
-    list.forEach((comment) => {
-      return displayComment(comment, commnetListContainer);
+    commentList.forEach((comment) => {
+      return commnetListContainer.appendChild(comment);
     });
   };
-  {
-    return buildComments;
-  }
+
+  return buildComments;
 })();
 
+// eslint-disable-next-line no-unused-vars
 const commentController = (function () {
   //Create individual comment node element
   const createNodeEl = (element, className, text, src, alt) => {
@@ -84,7 +82,7 @@ const commentController = (function () {
     return li;
   };
   //Building an actual array of comments
-  const createCommentNodeList = function () {
+  const createCommentNodeList = () => {
     const comments = commentData.retrieveData();
     return comments.map((comment) => createComment(comment));
   };
@@ -123,15 +121,15 @@ const commentController = (function () {
     });
   };
 
-  const addFormEventListener = function () {
+  const addFormEventListener = () => {
     const form = document.querySelector('.form');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      //Validate form values, stop the function if they are falsy
+      //Validate form values, stop the submit action if it is false
       if (formValidate() === false) return;
       //Extract Form info and insert data into comments array
       commentData.insertData(getFormValues());
-      //Asks View to rebuild the comment list and new comments
+      //Asks display to rebuild the comment list and show new comments
       commentDisplay(createCommentNodeList());
       //Clear Inputs
       e.target.name.value = '';
@@ -139,7 +137,7 @@ const commentController = (function () {
     });
   };
   //Starting the app
-  const init = (function () {
+  const init = () => {
     //Add Form event listener
     inputEventListener();
     addFormEventListener();
@@ -149,16 +147,21 @@ const commentController = (function () {
     //Retrieve data and convert it into node element list and display it
     const comments = createCommentNodeList();
     commentDisplay(comments);
-  })();
+  };
+  init();
 })();
 
-//Sticky navbar event listener
-window.addEventListener('scroll', () => {
-  const nav = document.querySelector('.nav');
-  const height = nav.getBoundingClientRect().height;
-  if (window.scrollY >= height) {
-    nav.classList.add('nav__sticky');
-  } else {
-    nav.classList.remove('nav__sticky');
-  }
+//Sticky navbar
+const header = document.querySelector('.header');
+const navbar = document.querySelector('.nav');
+const createStickyNavbar = (entries) => {
+  const [entry] = entries;
+  if (!entry.isIntersecting) navbar.classList.add('nav__sticky');
+  else navbar.classList.remove('nav__sticky');
+};
+const headerObserver = new IntersectionObserver(createStickyNavbar, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navbar.getBoundingClientRect().height}px`,
 });
+headerObserver.observe(header);

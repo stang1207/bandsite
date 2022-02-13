@@ -41,7 +41,7 @@
 }
 body {
   box-sizing: border-box;
-  font-family: "AvenirNextLTPro";
+  font-family: "AvenirNextLTPro", sans-serif;
   color: #323232;
   background: #323232;
   overflow-x: hidden;
@@ -146,14 +146,30 @@ body {
   max-width: 37.5rem;
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  min-height: 65vh;
+}
+@media (min-width: 48em) {
+  .header {
+    min-height: 83vh;
+  }
+}
+@media (min-width: 80em) {
+  .header {
+    min-height: 90vh;
+  }
+}
+
 .nav {
   padding: 1.5rem 0 0 0;
   display: flex;
   justify-content: center;
   -webkit-animation-name: fadeIntoRight;
           animation-name: fadeIntoRight;
-  -webkit-animation-duration: 1.3s;
-          animation-duration: 1.3s;
+  -webkit-animation-duration: 1.25s;
+          animation-duration: 1.25s;
   -webkit-animation-timing-function: ease-out;
           animation-timing-function: ease-out;
   gap: 1rem;
@@ -165,12 +181,9 @@ body {
 }
 .nav__sticky {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
+  z-index: 1000;
   background-color: #323232;
-  z-index: 100;
-  transition: all 0.5s;
 }
 .nav__container {
   gap: 1rem;
@@ -374,6 +387,7 @@ body {
 }
 
 .banner {
+  flex: 1;
   display: flex;
   justify-content: center;
   color: #ffffff;
@@ -397,24 +411,21 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   -webkit-animation-name: fadeIntoRight;
           animation-name: fadeIntoRight;
   -webkit-animation-duration: 1.6s;
           animation-duration: 1.6s;
   -webkit-animation-timing-function: ease-out;
           animation-timing-function: ease-out;
-  min-height: 55vh;
 }
 @media (min-width: 48em) {
   .banner__container {
-    min-height: 70vh;
     gap: 2rem;
   }
 }
 @media (min-width: 80em) {
   .banner__container {
-    min-height: 80vh;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
@@ -598,7 +609,6 @@ body {
 }
 .show--active {
   background-color: #e1e1e1;
-  z-index: 1000;
 }
 .show__text-box {
   flex: 1;
