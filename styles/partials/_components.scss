@@ -1,0 +1,274 @@
+@use './abstracts' as *;
+@use './layouts' as *;
+@use './base' as *;
+
+//Banner for both home and shows page
+.banner {
+  flex: 1;
+  @include justify-center;
+  color: $color-brand-tertiary;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  //banner paddings
+  padding: 0 1.5rem;
+  @include tablet {
+    padding: 0 2.5rem;
+  }
+
+  //Different background images for different pages
+  &--home {
+    background-image: linear-gradient(
+        to right,
+        rgba(50, 50, 50, 0.5),
+        rgba(50, 50, 50, 0.5)
+      ),
+      url('../../assets/images/hero-bio.jpg');
+  }
+
+  &--show {
+    background-image: linear-gradient(
+        to right,
+        rgba(50, 50, 50, 0.5),
+        rgba(50, 50, 50, 0.5)
+      ),
+      url('../../assets/images/hero-shows.jpg');
+  }
+
+  //Center container styles
+  &__container {
+    @extend .container;
+
+    //Show page styles
+    @include flex-column;
+    justify-content: center;
+    gap: 1.5rem;
+
+    //Fade-in animation for banner
+    animation-name: fadeIntoRight;
+    animation-duration: 1.6s;
+    animation-timing-function: ease-out;
+
+    @include tablet {
+      gap: 2rem;
+    }
+    @include desktop {
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4rem;
+    }
+  }
+  //Heading and iframe for the show page only
+  &__heading {
+    @extend .heading-primary;
+    width: 90%;
+
+    @include tablet {
+      width: 65%;
+    }
+    @include desktop {
+      width: 75%;
+      transform: translateY(-1.8rem);
+    }
+    &--small {
+      font-size: 0.9rem;
+      display: block;
+      @include tablet {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__iframe {
+    width: 100%;
+    max-height: 7rem;
+    border: none;
+    border-radius: 0.25rem;
+    @include tablet {
+      width: 70%;
+      min-height: 12rem;
+    }
+  }
+}
+
+// Gallery Image Items
+.gallery {
+  &__item {
+    position: relative;
+    flex-basis: calc(100% / 1);
+    aspect-ratio: 16 / 9;
+    filter: grayscale(65%);
+    transition: all 0.2s;
+    &:hover {
+      filter: grayscale(0);
+    }
+    @include tablet {
+      flex-basis: calc(100% / 3 - 1.5rem);
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+
+  &__img {
+    border-radius: 0.25rem;
+    @include image-fit;
+  }
+}
+
+//Form
+.form {
+  flex: 1;
+  @include flex-column;
+  gap: 1.5rem;
+
+  &__group {
+    min-height: 2.25rem;
+    row-gap: 0.25rem;
+    @include flex-column;
+    @include tablet {
+      min-height: 3rem;
+    }
+  }
+
+  &__label {
+    color: $dim-brand-primary;
+  }
+
+  &__name,
+  &__comment {
+    @extend .paragraph;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.3125rem;
+    padding: 0.75rem;
+    outline: 1px solid $dim-brand-primary;
+    &::placeholder {
+      color: $color-brand-primary;
+      opacity: 0.9;
+    }
+    &:focus {
+      outline: 1px solid $color-brand-primary;
+    }
+    @include tablet {
+      padding: 1rem;
+    }
+  }
+
+  &__btn {
+    @extend .btn;
+    align-self: flex-end;
+  }
+  &__error {
+    outline: 1px solid #d22d2d;
+  }
+}
+
+//Individual comment
+.comment {
+  @extend .paragraph;
+  display: flex;
+  padding: 2rem 0;
+  gap: 1rem;
+  border-bottom: 1px solid $dim-brand-primary;
+
+  @include tablet {
+    gap: 1.5rem;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    max-width: 3rem;
+    max-height: 3rem;
+    object-fit: cover;
+  }
+
+  &__text-box {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__author {
+    flex: 1;
+    font-weight: 600;
+  }
+
+  &__date {
+    color: $color-brand-secondary;
+  }
+
+  &__text {
+    flex-basis: 100%;
+  }
+}
+
+//Individual show detail box
+.show {
+  cursor: pointer;
+  @include flex-column;
+  border-bottom: 1px solid $dim-brand-primary;
+  margin: 0 -1.5rem;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+  @include tablet {
+    gap: 0;
+    flex-direction: row;
+  }
+  @include desktop {
+    padding: 1.5rem 1.125rem;
+  }
+  &--hover {
+    background-color: $dim-brand-secondary;
+  }
+  &--active {
+    background-color: $dim-brand-primary;
+  }
+  &__text-box {
+    flex: 1;
+    @include flex-column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  &__title {
+    color: $color-brand-secondary;
+    @include tablet {
+      display: none;
+    }
+    &--first {
+      @include tablet {
+        display: block;
+        position: absolute;
+        transform: translate(0.8rem, -4rem);
+      }
+    }
+  }
+  &__date {
+    font-weight: 600;
+  }
+  &__btn {
+    @extend .btn;
+  }
+}
+
+//Black button component
+.btn {
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  min-height: 2.5rem;
+  min-width: 9.375rem;
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $color-brand-tertiary;
+  background-color: $color-brand-primary;
+  &:hover {
+    background-color: $hilite-brand-primary;
+  }
+}
