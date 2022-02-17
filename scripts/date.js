@@ -1,4 +1,4 @@
-export default function (currentTimestamp, targetDateTimestamp) {
+export function getRelativeDate(currentTimestamp, targetDateTimestamp) {
   const currentSeconds = Math.floor(currentTimestamp / 1000);
   const targetSeconds = Math.floor(targetDateTimestamp / 1000);
   const diff = currentSeconds - targetSeconds;
@@ -16,4 +16,8 @@ export default function (currentTimestamp, targetDateTimestamp) {
   } else {
     return `${Math.floor(diff / 31449600)} years ago`;
   }
+}
+
+export function getReadableDate(timestamp) {
+  return new Date(timestamp).toDateString();
 }

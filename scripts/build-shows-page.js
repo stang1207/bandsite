@@ -1,39 +1,17 @@
+import { getReadableDate } from './date.js';
+
 const showData = (function () {
-  const shows = [
-    {
-      date: 'Mon Sept 06 2021',
-      venue: 'Ronald Lane',
-      location: 'San Francisco, CA',
-    },
-    {
-      date: 'Tue Sept 21 2021',
-      venue: 'Pier 3 East',
-      location: 'San Francisco, CA',
-    },
-    {
-      date: 'Fri Oct 15 2021',
-      venue: 'View Lounge',
-      location: 'San Francisco, CA',
-    },
-    {
-      date: 'Sat Nov 06 2021',
-      venue: 'Hyatt Agency',
-      location: 'San Francisco, CA',
-    },
-    {
-      date: 'Fri Nov 26 2021',
-      venue: 'Moscow Center',
-      location: 'San Francisco, CA',
-    },
-    {
-      date: 'Wed Dec 15 2021',
-      venue: 'Press Club',
-      location: 'San Francisco, CA',
-    },
-  ];
-  const retrieveData = () => shows;
-  const insertData = (show) => shows.appendChild(show);
-  return { retrieveData, insertData };
+  const retrieveData = async () => {
+    try {
+      const res = await axios.get(
+        'https://project-1-api.herokuapp.com/showdates?api_key=59ce12e0-2cae-4ec7-a0e0-2db89231ba1c'
+      );
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  return retrieveData;
 })();
 
 const showDisplay = (function () {
@@ -52,8 +30,8 @@ const showController = (function () {
   //Create individual comment node element related functions
   const createNodeEl = (element, className, text) => {
     const node = document.createElement(element);
-    node.classList.add(className);
-    node.textContent = text;
+    if (className) node.classList.add(className);
+    if (text) node.textContent = text;
     return node;
   };
 
@@ -67,9 +45,14 @@ const showController = (function () {
     return showColumnBox;
   };
 
-  const createShowEl = ({ date, venue, location }, index) => {
+  const createShowEl = ({ date, place: venue, location }, index) => {
     const li = createNodeEl('li', 'show');
-    const dateColumn = createShowColumn('Date', date, 'show__date', index);
+    const dateColumn = createShowColumn(
+      'Date',
+      getReadableDate(+date),
+      'show__date',
+      index
+    );
     const venueColumn = createShowColumn('Venue', venue, 'show__venue', index);
     const locationColumn = createShowColumn(
       'Location',
@@ -87,20 +70,27 @@ const showController = (function () {
     li.addEventListener('click', () => li.classList.toggle('show--active'));
     li.addEventListener('mouseenter', () => li.classList.add('show--hover'));
     li.addEventListener('mouseleave', () => li.classList.remove('show--hover'));
-
     return li;
   };
   //Building an actual array of comment node el
-  const createShowNodeList = () => {
-    const shows = showData.retrieveData();
-    return shows.map((show, index) => createShowEl(show, index));
+  const createShowNodeList = async () => {
+    try {
+      const shows = await showData();
+      return shows.map((show, index) => createShowEl(show, index));
+    } catch (err) {
+      console.log(err);
+    }
   };
   //Starting the app
-  const init = () => {
-    const showSection = document.querySelector('.shows');
-    showSection.appendChild(createNodeEl('ul', 'shows__list'));
-    const shows = createShowNodeList();
-    showDisplay(shows);
+  const init = async () => {
+    try {
+      const showSection = document.querySelector('.shows');
+      showSection.appendChild(createNodeEl('ul', 'shows__list'));
+      const shows = await createShowNodeList();
+      return showDisplay(shows);
+    } catch (err) {
+      console.log(err);
+    }
   };
   init();
 })();
