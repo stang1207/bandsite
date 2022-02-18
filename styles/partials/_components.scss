@@ -190,8 +190,12 @@
   &__text-box {
     flex: 1;
     display: flex;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
+    @include tablet {
+      gap: 0.5rem;
+    }
   }
 
   &__author {
@@ -205,6 +209,19 @@
 
   &__text {
     flex-basis: 100%;
+  }
+
+  &__delete-btn {
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    background-color: lightcoral;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    transition: all 0.2s;
+    &:hover {
+      background-color: rgb(233, 108, 108);
+    }
   }
 }
 

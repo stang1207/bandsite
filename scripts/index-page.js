@@ -34,9 +34,17 @@ const commentData = (function () {
       throw new Error(err.message);
     }
   };
-  return { retrieveData, insertData };
+  const deleteData = async (id) => {
+    try {
+      await axios.delete(
+        `https://project-1-api.herokuapp.com/comments/${id}?api_key=59ce12e0-2cae-4ec7-a0e0-2db89231ba1c`
+      );
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  };
+  return { retrieveData, insertData, deleteData };
 })();
-
 const commentDisplay = (function () {
   const buildComments = function (commentList) {
     const commnetListContainer = document.querySelector('.comments__list');
@@ -48,7 +56,6 @@ const commentDisplay = (function () {
 
   return buildComments;
 })();
-
 // eslint-disable-next-line no-unused-vars
 const commentController = (function () {
   //Create individual comment node element
@@ -60,7 +67,7 @@ const commentController = (function () {
     if (alt) node.setAttribute('alt', alt);
     return node;
   };
-  const createComment = ({ name, timestamp: date, comment, imgURL }) => {
+  const createComment = ({ name, timestamp: date, comment, imgURL, id }) => {
     const currentDate = new Date().getTime();
     const li = createNodeEl('li', 'comment');
     const imgNode = createNodeEl(
@@ -78,17 +85,29 @@ const commentController = (function () {
       getRelativeDate(currentDate, date)
     );
     const commentText = createNodeEl('p', 'comment__text', comment);
+    const commentDeleteBtn = createNodeEl(
+      'button',
+      'comment__delete-btn',
+      'Delete'
+    );
+    commentDeleteBtn.addEventListener('click', () => deleteCommentEvent(id));
     li.appendChild(imgNode);
     li.appendChild(textBox);
     textBox.appendChild(author);
     textBox.appendChild(dateNode);
     textBox.appendChild(commentText);
+    textBox.appendChild(commentDeleteBtn);
     return li;
   };
   //Building an actual array of comments
   const createCommentNodeList = async () => {
     const comments = await commentData.retrieveData();
     return comments.map((comment) => createComment(comment));
+  };
+
+  const refetchComments = async () => {
+    const newComments = await createCommentNodeList();
+    return commentDisplay(newComments);
   };
   //Retrieve values from form and event listener
   const formValidate = () => {
@@ -105,6 +124,11 @@ const commentController = (function () {
       name,
       comment,
     };
+  };
+  //Delete Event, delete event listener is added in the createComment function
+  const deleteCommentEvent = async (id) => {
+    await commentData.deleteData(id);
+    refetchComments();
   };
   const inputEventListener = () => {
     const name = document.querySelector('.form__name');
@@ -126,8 +150,7 @@ const commentController = (function () {
       const comment = getFormValues();
       await commentData.insertData(comment);
       //Asks display to rebuild the comment list and show new comments
-      const newComments = await createCommentNodeList();
-      commentDisplay(newComments);
+      refetchComments();
       //Clear Inputs
       e.target.name.value = '';
       e.target.comment.value = '';

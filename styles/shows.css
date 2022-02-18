@@ -571,8 +571,14 @@ body {
 .comment__text-box {
   flex: 1;
   display: flex;
+  justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+@media (min-width: 48em) {
+  .comment__text-box {
+    gap: 0.5rem;
+  }
 }
 .comment__author {
   flex: 1;
@@ -583,6 +589,18 @@ body {
 }
 .comment__text {
   flex-basis: 100%;
+}
+.comment__delete-btn {
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  background-color: lightcoral;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  transition: all 0.2s;
+}
+.comment__delete-btn:hover {
+  background-color: #e96c6c;
 }
 
 .show {
