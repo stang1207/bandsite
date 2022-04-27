@@ -18,7 +18,6 @@ const commentData = (function () {
     }
   };
   const insertData = async (comment) => {
-    //wtf
     try {
       const config = {
         headers: {
@@ -56,7 +55,6 @@ const commentDisplay = (function () {
 
   return buildComments;
 })();
-// eslint-disable-next-line no-unused-vars
 const commentController = (function () {
   //Create individual comment node element
   const createNodeEl = (element, className, text, src, alt) => {
